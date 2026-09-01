@@ -1,42 +1,38 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@theme {
-  /* Primary, Blue Zodiac navy scale */
-  --color-zodiac-50: #eef1f9;
-  --color-zodiac-100: #d6ddf0;
-  --color-zodiac-200: #aebbe0;
-  --color-zodiac-300: #8194c9;
-  --color-zodiac-400: #5670ab;
-  --color-zodiac-500: #37518a;
-  --color-zodiac-600: #253c6c;
-  --color-zodiac-700: #182c53;
-  --color-zodiac-800: #101d3a;
-  --color-zodiac-900: #0b1530;
-  --color-zodiac-950: #060c1d;
-
-  /* Accent, warm amber, used only for emphasis */
-  --color-amber-accent: #f5a623;
-
-  /* Semantic status colors */
-  --color-success: #1ca86c;
-  --color-success-bg: #e8f8f0;
-  --color-warning: #d97706;
-  --color-warning-bg: #fef3e2;
-  --color-danger: #dc3545;
-  --color-danger-bg: #fdecee;
-
-  /* Surface & neutrals */
-  --color-surface: #ffffff;
-  --color-canvas: #f5f7fb;
-  --color-border-subtle: #e4e8f1;
-
-  --font-display: "Sora", "Inter", system-ui, sans-serif;
-  --font-body: "Inter", system-ui, sans-serif;
+@layer base {
+  html, body, #root {
+    height: 100%;
+  }
+  body {
+    @apply bg-surface-bg text-slate-800 antialiased m-0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 13px;
+  }
+  * {
+    box-sizing: border-box;
+  }
 }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-canvas);
-  color: var(--color-zodiac-900);
-  -webkit-font-smoothing: antialiased;
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-navy-900 text-white text-xs font-medium hover:bg-navy-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white text-slate-700 text-xs font-medium border border-surface-border hover:bg-slate-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .card {
+    @apply bg-surface-card border border-surface-border rounded-md shadow-card;
+  }
+  .input-field {
+    @apply w-full px-2.5 py-1.5 text-xs border border-surface-border rounded-md focus:outline-none focus:ring-2 focus:ring-navy-800/20 focus:border-navy-700 placeholder:text-slate-400;
+  }
+  .label-field {
+    @apply block text-xs font-medium text-slate-600 mb-1;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[11px] font-medium;
+  }
 }

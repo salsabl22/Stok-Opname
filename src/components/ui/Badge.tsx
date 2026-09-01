@@ -1,23 +1,24 @@
-type BadgeTone = "success" | "warning" | "danger" | "neutral";
+import type { ReactNode } from 'react';
+
+type BadgeTone = 'success' | 'danger' | 'warning' | 'neutral' | 'info';
+
+const TONE_CLASSES: Record<BadgeTone, string> = {
+  success: 'bg-status-successBg text-status-success',
+  danger: 'bg-status-dangerBg text-status-danger',
+  warning: 'bg-status-warningBg text-status-warning',
+  neutral: 'bg-status-neutralBg text-status-neutral',
+  info: 'bg-blue-50 text-blue-600',
+};
 
 interface BadgeProps {
   tone: BadgeTone;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
-const TONE_STYLES: Record<BadgeTone, string> = {
-  success: "bg-[--color-success-bg] text-[--color-success]",
-  warning: "bg-[--color-warning-bg] text-[--color-warning]",
-  danger: "bg-[--color-danger-bg] text-[--color-danger]",
-  neutral: "bg-zodiac-50 text-zodiac-600",
-};
-
-export function Badge({ tone, children }: BadgeProps) {
+export default function Badge({ tone, children }: BadgeProps) {
   return (
-    <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${TONE_STYLES[tone]}`}
-    >
-      <span className="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true" />
+    <span className={`badge ${TONE_CLASSES[tone]}`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-current" />
       {children}
     </span>
   );
